@@ -20,8 +20,12 @@ export default function getDataMovies() {
   const $nextArrow = d.createElement("img"),
     $prevArrow = d.createElement("img"),
     $mobileArrowsContainer = d.createElement("div"),
+    $nextFigureMobile = d.createElement("figure"),
+    $prevFigureMobile = d.createElement("figure"),
     $nextArrowMobile = d.createElement("img"),
-    $prevArrowMobile= d.createElement("img");
+    $prevArrowMobile= d.createElement("img"),
+    $nextFigcaptionMobile = d.createElement("figcaption"),
+    $prevFigcaptionMobile = d.createElement("figcaption");
 
   //Next arrow
   $nextArrow.setAttribute("id", "next-arrow");
@@ -38,16 +42,23 @@ export default function getDataMovies() {
   //Mobile arrows container
   $mobileArrowsContainer.classList.add("mobile-arrows-container");
 
+  $nextFigureMobile.classList.add("mobile-arrow-figure");
   //Next arrow mobile
   $nextArrowMobile.setAttribute("id", "next-arrow-mobile");
   $nextArrowMobile.classList.add("next-arrow-mobile");
   $nextArrowMobile.setAttribute("src", "assets/next-arrow.png");
   $nextArrowMobile.setAttribute("alt", "Next");
+  //Next figcaption
+  $nextFigcaptionMobile.textContent = "Next";
+
+  $prevFigureMobile.classList.add("mobile-arrow-figure");
   //Previous arrow mobile
   $prevArrowMobile.setAttribute("id", "prev-arrow-mobile");
   $prevArrowMobile.classList.add("prev-arrow-mobile");
   $prevArrowMobile.setAttribute("src", "assets/prev-arrow.png");
   $prevArrowMobile.setAttribute("alt", "Previous");
+  //Previous figcaption
+  $prevFigcaptionMobile.textContent = "Prev";
 
   async function getMovies() {
     let typeQuery = $dropDown.textContent.toLowerCase();
@@ -121,8 +132,15 @@ export default function getDataMovies() {
         });
 
         $articleMovies.appendChild($mobileArrowsContainer);
-        $mobileArrowsContainer.appendChild($prevArrowMobile);
-        $mobileArrowsContainer.appendChild($nextArrowMobile);
+
+        $prevFigureMobile.appendChild($prevArrowMobile);
+        $nextFigureMobile.appendChild($nextArrowMobile);
+
+        $prevFigureMobile.appendChild($prevFigcaptionMobile);
+        $nextFigureMobile.appendChild($nextFigcaptionMobile);
+
+        $mobileArrowsContainer.appendChild($prevFigureMobile);
+        $mobileArrowsContainer.appendChild($nextFigureMobile);
 
         $articleMovies.appendChild($prevArrow);
         $articleMovies.appendChild($fragment);
@@ -133,6 +151,7 @@ export default function getDataMovies() {
         if (pageNumber > 1) {
           $prevArrow.classList.remove("none");
           $prevArrowMobile.classList.remove("none");
+          $prevFigcaptionMobile.classList.remove("none");
           responsiveMedia(
             "prev-arrow",
             "(min-width: 992px)",
@@ -142,6 +161,7 @@ export default function getDataMovies() {
         } else {
           $prevArrow.classList.add("none");
           $prevArrowMobile.classList.add("none");
+          $prevFigcaptionMobile.classList.add("none");
         }
 
         if (pageNumber === 1) {
@@ -205,8 +225,9 @@ export default function getDataMovies() {
   });
 
   $inputRequest.addEventListener("keypress", (e) => {
+    //console.log(e);
     e.stopImmediatePropagation();
     pageNumber = 1;
-    if (e.target.matches("#request")) { if (e.keyCode === 13) getMovies(); }
+    if (e.target.matches("#request")) { if (e.key === "Enter") getMovies(); }
   });
 }

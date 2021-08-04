@@ -4,12 +4,19 @@
   --font-size: 16px;
   --main-color: #990000;
   --main-model-color: #aa1111;
-  --second-color: #2222222;
-  --second-model-color: #22222280;
+  --second-color: #222222;
+  --second-model-color: #22222235;
   --third-color: #ffffff;
   --container-width: 1920px;
 }
 
+body::-webkit-scrollbar { width: .5rem; }
+body::-webkit-scrollbar-track { background-color: var(--second-color); }
+body::-webkit-scrollbar-thumb { background-color: var(--main-color); }
+
+#article-movies::-webkit-scrollbar { height: .5rem; }
+#article-movies::-webkit-scrollbar-track { background-color: var(--second-model-color); }
+#article-movies::-webkit-scrollbar-thumb { background-color: var(--main-color); }
 
 html {
   box-sizing: border-box;
@@ -85,13 +92,21 @@ a:hover { color: var(--main-model-color) }
 
 
 /* Errors & Loaders */
+.loader-error {
+  background-image: url(../assets/movie-projector.jpg);
+  background-size: 30%;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-attachment: fixed;
+}
+
 .loader-error, .full-loader-error {
+  padding-top: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center; 
 }
-.full-loader-error { margin-top: 2rem; }
 
 .loader, .full-loader { min-width: 5rem; }
 
@@ -111,15 +126,21 @@ a:hover { color: var(--main-model-color) }
   display: flex;
   align-items: center;
 }
+.mobile-arrow-figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 120%;
+  font-weight: bold;
+  text-align: center;
+}
 .prev-arrow-mobile, .next-arrow-mobile {
-  height: 10vh;
   width: 20vw;
-  min-height: 4rem;
-  max-height: 5rem;
+  height: 5.5rem;
   min-width: 5rem;
   max-width: 7rem;
 }
-
 .prev-arrow-mobile:hover, .next-arrow-mobile:hover { cursor: pointer }
 
 
