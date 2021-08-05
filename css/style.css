@@ -106,8 +106,8 @@ a:hover { color: var(--main-model-color) }
   text-align: center; 
 }
 
-.full-loader-error {
-  padding-top: 5%;
+.loader-error, .full-loader-error {
+  padding-top: 10%;
 }
 
 .loader, .full-loader { min-width: 5rem; }
