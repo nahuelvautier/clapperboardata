@@ -74,6 +74,7 @@ export default function getDataMovies() {
       $articleMovies.innerHTML = "";
       $articleInfo.innerHTML = "";
       $showNot.classList.add("none");
+      d.querySelector("h2").classList.add("none");
 
       let query = $inputRequest.value.toLowerCase(),
         api = `https://www.omdbapi.com/?s=${query}&type=${typeQuery}&page=${pageNumber}&apikey=${OMDBKEY.key}`,

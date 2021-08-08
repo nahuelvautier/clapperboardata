@@ -76,8 +76,9 @@ header {
 
 .logo-container figcaption {
   margin-left: .2rem;
-  font-size: 75%;
-  font-weight: 700;
+  font-size: 90%;
+  font-style: italic;
+  font-weight: bold;
 }
 
 a {
@@ -106,11 +107,10 @@ a:hover { color: var(--main-model-color) }
   text-align: center; 
 }
 
-.loader-error, .full-loader-error {
-  padding-top: 10%;
+.loader, .full-loader {
+  padding-top: 5rem;
+  min-width: 5rem;
 }
-
-.loader, .full-loader { min-width: 5rem; }
 
 
 /* Desktop Arrows  */
@@ -400,11 +400,7 @@ footer {
 }
 
 @media screen and (min-width: 992px) {
-  .logo-container figcaption {
-    font-size: 150%;
-    font-weight: bold;
-    font-style: italic;
-  }
+  .logo-container figcaption { font-size: 150%; }
 
   /* Reset */
   h1 { font-size: 280%; }
@@ -466,7 +462,7 @@ footer {
 
   /* Full Info Section */
   #article-full-info {
-    min-height: 35rem;
+    min-height: 36rem;
     height: auto;
   }
 
