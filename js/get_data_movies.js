@@ -110,25 +110,20 @@ export default function getDataMovies() {
         $showNot.classList.add("none");
         $articleMovies.classList.remove("none");
 
-        json.Search.forEach((el) => {
-          if (el.Poster === "N/A") {
-            $templateMovie.querySelector(".movies-container").style.display = "none";
-          } else {
-            $templateMovie.querySelector(".title").textContent = el.Title;
-            $templateMovie.querySelector("figure").classList.add("img-item");
-            $templateMovie.querySelector("img").src = el.Poster;
-            $templateMovie.querySelector("img").alt = el.Title;
-            $templateMovie.querySelector(".imdb-query").name = `${el.imdbID}`;
-            $templateMovie.querySelector(".imdb-query").value = "Get all info";
-            if (el.Type === "game") {
-              // No way to filter the type game queries from endpoint, so I wrote this code lines.
-              $templateMovie.querySelector(".movies-container").style.display = "none";
-            } else {
-              $templateMovie.querySelector(".movies-container").style.display = "flex";
-            }
-          }
+        const filteredPosterQuery = json.Search.filter(el => el.Poster !== "N/A"), // to filter queries without poster.
+          filteredGamesQuery = filteredPosterQuery.filter(el => el.Type !== "game"); // to filter game queries.
 
-          let $clone = d.importNode($templateMovie, true);
+        filteredGamesQuery.forEach((el) => {
+          //console.log(filteredPosterQuery);
+
+          $templateMovie.querySelector(".title").textContent = el.Title;
+          $templateMovie.querySelector("figure").classList.add("img-item");
+          $templateMovie.querySelector("img").src = el.Poster;
+          $templateMovie.querySelector("img").alt = el.Title;
+          $templateMovie.querySelector(".imdb-query").name = `${el.imdbID}`;
+          $templateMovie.querySelector(".imdb-query").value = "Get all info";
+
+          const $clone = d.importNode($templateMovie, true);
           $fragment.appendChild($clone);
         });
 
